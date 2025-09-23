@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
 
 test_npm:
   image: node:22-alpine
@@ -12,4 +13,10 @@ test_npm:
   artifacts:
     paths:
       - build/
+
+test_artifact:
+  image: node:22-alpine
+  stage: test
+  script:
+    - test -f build/index.html
 
