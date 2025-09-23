@@ -1,6 +1,4 @@
-stages:
-  - build
-  - test
+
 
 test_npm:
   image: node:22-alpine
