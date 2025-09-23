@@ -7,7 +7,9 @@ test_npm:
   script: 
     - node --version
     - npm --version
-    - ls -la
     - npm ci
     - npm run build
-    - ls -la
+  artifacts:
+    paths:
+      - build/
+
