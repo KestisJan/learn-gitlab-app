@@ -24,4 +24,8 @@ unit_test:
   script:
     - npm ci
     - npm test
+  artifacts:
+    when: always
+    reports:
+      junit: reports/junit.xml
 
