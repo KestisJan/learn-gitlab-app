@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - deploy
 
 build_website:
   image: node:22-alpine
@@ -33,7 +34,7 @@ unit_test:
 
 netlify:
   image: node:22-alpine
-  stage: .pre
+  stage: deploy
   variables:
     NETLIFY_SITE_ID: '0ed3211f-886d-49a9-a07a-0acc164bc063'
   script:
@@ -41,3 +42,4 @@ netlify:
     - netlify --version
     - netlify status
     - echo "Deploying to site id $NETLIFY_SITE_ID"
+    - netlify deploy --prod --dir build
