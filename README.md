@@ -2,4 +2,4 @@
 
 This simple web appplication uses React + Vite. 
 
-Add test note
+Add test note.
