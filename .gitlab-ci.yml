@@ -39,5 +39,5 @@ netlify:
   script:
     - npm install -g netlify-cli@20.1.1
     - netlify --version
+    - netlify status
     - echo "Deploying to site id $NETLIFY_SITE_ID"
-    - echo $NETLIFY_AUTH_TOKEN
