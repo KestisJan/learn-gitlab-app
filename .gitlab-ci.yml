@@ -35,5 +35,5 @@ netlify:
   image: node:22-alpine
   stage: .pre
   script:
-    - npm install netlify-cli -g
+    - npm install -g netlify-cli@20.1.1
     - netlify --version
