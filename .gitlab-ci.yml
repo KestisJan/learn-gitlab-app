@@ -1,6 +1,9 @@
+stages:
+  - build
+  - test
+  - deploy
 
-
-test_npm:
+build_website:
   image: node:22-alpine
   stage: build
   script: 
@@ -29,3 +32,18 @@ unit_test:
     reports:
       junit: reports/junit.xml
 
+netlify:
+  image: node:22-alpine
+  stage: deploy
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  variables:
+    NETLIFY_SITE_ID: '0ed3211f-886d-49a9-a07a-0acc164bc063'
+  script:
+    - npm install -g netlify-cli@20.1.1
+    - netlify --version
+    - netlify status
+    - echo "Deploying to site id $NETLIFY_SITE_ID"
+    - netlify deploy --prod --dir build
+    - apk add curl
+    - curl -Is --fail 'https://kj-learn-gitlab.netlify.app'
