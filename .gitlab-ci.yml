@@ -1,6 +1,8 @@
+stages:
+  - build
+  - test
 
-
-test_npm:
+build_website:
   image: node:22-alpine
   stage: build
   script: 
@@ -12,13 +14,23 @@ test_npm:
     paths:
       - build/
 
-test_artifact:
+build_website:
+  image: alpine
+  stage: build
+  script:
+    - mkdir build
+    - echo "<h1<Learn Gitlab</h1>" >> build/index.html
+  artifacts:
+    paths:
+      - build/
+
+.test_artifact:
   image: node:22-alpine
   stage: test
   script:
     - test -f build/index.html
 
-unit_test:
+.unit_test:
   image: node:22-alpine
   stage: test
   script:
