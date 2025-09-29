@@ -39,11 +39,12 @@ netlify:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   variables:
     NETLIFY_SITE_ID: '0ed3211f-886d-49a9-a07a-0acc164bc063'
-  script:
+  before_script:
     - npm install -g netlify-cli@20.1.1
+    - apk add curl
+  script:
     - netlify --version
     - netlify status
     - echo "Deploying to site id $NETLIFY_SITE_ID"
     - netlify deploy --prod --dir build
-    - apk add curl
     - curl -Is --fail 'https://kj-learn-gitlab.netlify.app'
