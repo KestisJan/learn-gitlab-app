@@ -35,6 +35,8 @@ unit_test:
 netlify:
   image: node:22-alpine
   stage: deploy
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   variables:
     NETLIFY_SITE_ID: '0ed3211f-886d-49a9-a07a-0acc164bc063'
   script:
