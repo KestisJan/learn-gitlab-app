@@ -41,7 +41,7 @@ build_website:
     reports:
       junit: reports/junit.xml
 
-eslint:
+.eslint:
   image: node:22-alpine
   script:
     - npm ci
