@@ -34,6 +34,9 @@ unit_test:
 netlify:
   image: node:22-alpine
   stage: .pre
+  variables:
+    NETLIFY_SITE_ID: '0ed3211f-886d-49a9-a07a-0acc164bc063'
   script:
     - npm install -g netlify-cli@20.1.1
     - netlify --version
+    - echo "Deploying to site id $NETLIFY_SITE_ID"
