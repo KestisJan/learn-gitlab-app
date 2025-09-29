@@ -1,7 +1,13 @@
+variables:
+    NETLIFY_SITE_ID: '0ed3211f-886d-49a9-a07a-0acc164bc063'
+
+
 stages:
   - build
   - test
-  - deploy
+  - deploy_staging
+  - deploy_prod
+
 
 build_website:
   image: node:22-alpine
@@ -32,13 +38,29 @@ unit_test:
     reports:
       junit: reports/junit.xml
 
-netlify:
+
+netlift_staging:
   image: node:22-alpine
-  stage: deploy
+  stage: deploy_staging
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+  before_script:
+    - npm install -g nelify-cli@20.1.1
+    - apk add curl
+  script:
+    - netlify --version
+    - netlify status
+    - echo "Deploying to site id $NETLIFY_SITE_ID"
+    - netlify deploy --alias staging --dir build
+    - curl 'https://staging--kj-learn-gitlab.netlify.app' | grep "GitLab"
+
+
+netlify_prod:
+  image: node:22-alpine
+  stage: deploy_prod
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   variables:
-    NETLIFY_SITE_ID: '0ed3211f-886d-49a9-a07a-0acc164bc063'
   before_script:
     - npm install -g netlify-cli@20.1.1
     - apk add curl
