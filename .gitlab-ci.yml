@@ -1,6 +1,8 @@
+stages:
+  - build
+  - test
 
-
-test_npm:
+build_website:
   image: node:22-alpine
   stage: build
   script: 
@@ -29,3 +31,9 @@ unit_test:
     reports:
       junit: reports/junit.xml
 
+netlify:
+  image: node:22-alpine
+  stage: .pre
+  script:
+    - npm install netlify-cli -g
+    - netlify --version
