@@ -39,7 +39,7 @@ unit_test:
       junit: reports/junit.xml
 
 
-netlift_staging:
+netlify_staging:
   image: node:22-alpine
   stage: deploy_staging
   rules:
@@ -58,6 +58,7 @@ netlift_staging:
 netlify_prod:
   image: node:22-alpine
   stage: deploy_prod
+  when: manual
   rules:
     - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
   before_script:
