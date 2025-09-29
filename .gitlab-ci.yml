@@ -43,3 +43,4 @@ netlify:
     - netlify status
     - echo "Deploying to site id $NETLIFY_SITE_ID"
     - netlify deploy --prod --dir build
+    - curl 'https://kj-learn-gitlab.netlify.app'| grep 'GitLab'
