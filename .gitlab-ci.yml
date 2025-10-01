@@ -5,6 +5,7 @@ variables:
 stages:
   - build
   - test
+  - deploy_review
   - deploy_staging
   - deploy_prod
 
@@ -38,6 +39,17 @@ unit_test:
     reports:
       junit: reports/junit.xml
 
+netlify_review:
+  image: node:22-alpine
+  stage: deploy_review
+  before_script:
+    - npm install -g netlify-cli@20.1.1
+    - apk add curl
+  script:
+    - netlify --version
+    - netlify status
+    - echo "Deploying to site id $NETLIFY_SITE_ID"
+    - netlify deploy --dir build
 
 netlify_staging:
   image: node:22-alpine
