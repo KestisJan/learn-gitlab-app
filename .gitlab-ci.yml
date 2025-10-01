@@ -1,3 +1,8 @@
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
 variables:
     NETLIFY_SITE_ID: '0ed3211f-886d-49a9-a07a-0acc164bc063'
 
