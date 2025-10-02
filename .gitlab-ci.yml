@@ -74,10 +74,14 @@ netlify_review:
   artifacts:
     reports:
 <<<<<<< HEAD
+<<<<<<< HEAD
       dotenv: deploy.env
 =======
       donenv: deploy.env
 >>>>>>> 74c8e05 (Define dynamic environment variables)
+=======
+      dotenv: deploy.env
+>>>>>>> d14027e (Fix: syntax error)
 
 netlify_staging:
   image: node:22-alpine
