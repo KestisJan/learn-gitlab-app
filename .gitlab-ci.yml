@@ -67,7 +67,7 @@ netlify_review:
     - cat deploy.env
   artifacts:
     reports:
-      donenv: deploy.env
+      dotenv: deploy.env
 
 netlify_staging:
   image: node:22-alpine
