@@ -73,7 +73,11 @@ netlify_review:
     - cat deploy.env
   artifacts:
     reports:
+<<<<<<< HEAD
       dotenv: deploy.env
+=======
+      donenv: deploy.env
+>>>>>>> 74c8e05 (Define dynamic environment variables)
 
 netlify_staging:
   image: node:22-alpine
