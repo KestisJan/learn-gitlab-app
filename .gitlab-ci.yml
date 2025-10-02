@@ -66,7 +66,8 @@ netlify_review:
     - netlify deploy --dir build --json
     - netlify deploy --dir build --json > deploy-result.json
     - cat deploy-result.json
-    - jq -r '.deploy_url' deploy-result.json
+    - REVIEW_URL=$(jq -r '.deploy_url' deploy-result.json)
+    - curl $REVIEW_URL | grep 'GitLab'
 
 netlify_staging:
   image: node:22-alpine
