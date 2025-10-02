@@ -61,6 +61,7 @@ netlify_review:
     - netlify deploy --dir build --json > deploy-result.json
     - cat deploy-result.json
     - REVIEW_URL=$(jq -r '.deploy_url' deploy-result.json)
+    - echo $REVIEW_URL
     - curl $REVIEW_URL | grep 'GitLab'
 
 netlify_staging:
