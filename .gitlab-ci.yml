@@ -54,13 +54,7 @@ netlify_review:
     url: $REVIEW_URL
   before_script:
     - npm install -g netlify-cli@20.1.1
-    - apk add curl jq
-<<<<<<< HEAD
-    - apk add curl
-    - mkdir build
     - echo "Test" >> build/index.html
-=======
->>>>>>> e76aeea (Fix: refactor pipeline)
   script:
     - netlify --version
     - netlify status
@@ -73,15 +67,7 @@ netlify_review:
     - cat deploy.env
   artifacts:
     reports:
-<<<<<<< HEAD
-<<<<<<< HEAD
       dotenv: deploy.env
-=======
-      donenv: deploy.env
->>>>>>> 74c8e05 (Define dynamic environment variables)
-=======
-      dotenv: deploy.env
->>>>>>> d14027e (Fix: syntax error)
 
 netlify_staging:
   image: node:22-alpine
