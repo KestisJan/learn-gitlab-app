@@ -46,7 +46,7 @@ unit_test:
 
 netlify_review:
   image: node:22-alpine
-  stage: .pre
+  stage: deploy_review
   rules:
     - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
   environment:
@@ -55,9 +55,12 @@ netlify_review:
   before_script:
     - npm install -g netlify-cli@20.1.1
     - apk add curl jq
+<<<<<<< HEAD
     - apk add curl
     - mkdir build
     - echo "Test" >> build/index.html
+=======
+>>>>>>> e76aeea (Fix: refactor pipeline)
   script:
     - netlify --version
     - netlify status
