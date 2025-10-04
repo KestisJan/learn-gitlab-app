@@ -56,19 +56,11 @@ netlify_review:
     - npm install -g netlify-cli@20.1.1
     - apk add curl jq
     - apk add curl
-    - mkdir build
-    - echo "Test" >> build/index.html
   script:
     - netlify --version
     - netlify status
     - echo "Deploying to site id $NETLIFY_SITE_ID"
     - netlify deploy --dir build --json | tee deploy-result.json
-    - REVIEW_URL=$(jq -r '.deploy_url' deploy-result.json)
-    - echo $REVIEW_URL
-    - curl $REVIEW_URL | grep 'GitLab'
-    - netlify deploy --dir build --json
-    - netlify deploy --dir build --json > deploy-result.json
-    - cat deploy-result.json
     - REVIEW_URL=$(jq -r '.deploy_url' deploy-result.json)
     - echo $REVIEW_URL
     - curl $REVIEW_URL | grep 'GitLab'
